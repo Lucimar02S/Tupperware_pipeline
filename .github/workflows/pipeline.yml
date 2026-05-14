@@ -1,0 +1,24 @@
+name: Pipeline Venda Tupperware
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validar-vendas:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar arquivos da loja
+        uses: actions/checkout@v4
+
+      - name: Configurar ambiente Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Executar sistema de vendas
+        run: python vendas_tupperware.py
+
+      - name: Executar teste das vendas
+        run: python teste_vendas.py
